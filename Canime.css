@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;    /*Aligns Center in Column wise */
+    align-items: center;        /*Aligns Center in Row wise*/
+    background: #000;
+    color: #fff;
+    gap: 5vw;
+}
+
+h1{
+    color: rgba(254, 254, 254, 0.1);
+    font-size: 5em;
+    z-index: 10;      /* for bring content-text to front level */
+}
+
+.animated_card_A,
+.animated_card_B,
+.animated_card_C{
+    display: grid;
+    place-items: center;    /*Place items of Card(eg.: card text : Card A,Card B)*/
+    position: relative;     /*Card Position*/
+    height: 500px;
+    width: 350px;
+    background: #222;
+    border-radius: 10px;
+    cursor: pointer;        /*Cursor Design when Mouse on Card*/
+}
+
+/*CARD A Border Animation*/
+.animated_card_A::before{
+    position: absolute;
+    content: '';
+    height: 500px;
+    width: 350px;
+    background: tomato;
+    border-radius: 15px;
+    z-index: -1;
+    transition: 0.3s;
+    animation: animate_A 2s linear infinite;
+}
+@keyframes animate_A{       /*Animation Design*/
+    50%{
+        filter: hue-rotate(350deg);     /*For Mix-color Changing Animation*/
+    }
+}
+
+.animated_card_A:hover::before{     /*Card Animation_Ring Scale */
+    height: 514px;
+    width: 364px;
+}
+
+/*CARD B Border Animation*/
+.animated_card_B{
+    overflow: hidden;       /*For hide object part which is going outside the card*/
+}
+
+.animated_card_B::before{
+    position: absolute;
+    content: '';
+    width: 50%;
+    height: 180%;
+    transform: rotate(45deg);       /*Rotates object*/
+}
+
+.animated_card_B:hover::before{
+    animation: animate_B 2s linear infinite;
+    background: tomato;
+}
+@keyframes animate_B{
+    /*For Rotate Ring(Object)*/
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+    /*For Color Animation*/
+    50%{
+        filter: hue-rotate(360deg);
+    }
+}
+
+.animated_card_B::after{
+    position: absolute;
+    content: '';
+    inset: 8px;     /*Ring Scale inside Card*/
+    background: #222;
+    border-radius: 10px;
+}
+
+/*CARD C Border Animation*/
+.animated_card_C::after{
+    position: absolute;
+    content: '';
+    height: 500px;
+    width: 350px;
+    background: tomato;
+    border-radius: 15px;
+    z-index: -1;
+    transition: 0.3s;
+    animation: animateBorder_C 2s linear infinite;
+}
+@keyframes animateBorder_C{       /*Animation Design After Mouse on Object*/
+    50%{
+        filter: hue-rotate(350deg);     /*For Mix-color Changing Animation*/
+    }
+}
+
+.animated_card_C:hover::after{     /*Card Animation_Ring Scale */
+    height: 514px;
+    width: 364px;
+}
+
+.animated_card_C::before{
+    position: absolute;
+    content: '';
+    height: 500px;
+    width: 350px;
+    background: tomato;
+    border-radius: 15px;
+    z-index: -1;
+}
+
+.animated_card_C:hover::before{
+    height: 514px;
+    width: 364px;
+    transition: 0.5s;
+    animation: animateShadow_C 2s linear infinite;
+    opacity: 0.8;
+}
+@keyframes animateShadow_C{       /*Animation Design*/
+    50%{
+        filter: blur(80px) hue-rotate(350deg);     /*For Mix-color Changing Animation*/
+    }
+}
